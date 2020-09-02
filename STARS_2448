@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+char arr[3072][6144]; //N*2N 크기의 배열 선언 
+
+//별찍어주는 함수 선언 
+void star(int i, int j, int num) {
+
+	if (num == 3) { //최소 삼각형일 때 별찍기
+		arr[i][j] = '*';
+		arr[i + 1][j - 1] = '*';
+		arr[i + 1][j + 1] = '*';
+		arr[i + 2][j - 2] = '*';
+		arr[i + 2][j - 1] = '*';
+		arr[i + 2][j] = '*';
+		arr[i + 2][j + 1] = '*';
+		arr[i + 2][j + 2] = '*';
+
+		return;
+	}
+	star(i, j, num/2); //가장 위의 삼각형
+	star(i + num / 2, j - num / 2, num / 2); //왼쪽 삼각형
+	star(i + num / 2, j + num / 2, num / 2); //오른쪽 삼각형
+
+}
+
+int main() {
+	int num; //입력받을 숫자 선언
+	cin >> num; // 숫자 입력받기
+
+	for (int i = 0; i < num; i++) {
+		for (int j = 0; j < 2 * num-1; j++) {
+			//if (j == 2 * num - 1)
+				//arr[i][j]='\0';
+			arr[i][j] = ' ';//모든 좌표 공백 초기화
+		}
+	}
+	star(0, num - 1, num); // i, j, num 넘겨주기 
+
+	for (int i = 0; i < num; i++) {
+		for (int j = 0; j < 2 * num-1; j++) {
+			cout << arr[i][j];
+		}
+		cout << "\n";
+	}
+	
+	return 0;
+}
