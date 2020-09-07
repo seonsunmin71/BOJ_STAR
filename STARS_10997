@@ -1,0 +1,90 @@
+#include <iostream>
+using namespace std;
+
+//배열 선언 
+char arr[399][397];
+
+void star(int a, int b, int num) {//별출력
+	int x = 4 * num - 1; // 세로값
+	int y = 4 * num - 3; // 가로값
+
+	if (num == 2) { // 최소 2일 경우 찍기
+		for (int i = 0; i < 5; i++) {
+			arr[a][b + i] = '*';
+			arr[a + 6][b + i] = '*';
+		}
+		for (int j = 1; j < 6; j++) {
+			arr[a + j][b] = '*';
+		}
+		arr[a + 2][b + 2] = '*';
+		arr[a + 2][b + 3] = '*';
+		arr[a + 2][b + 4] = '*';
+		arr[a + 3][b + 2] = '*';
+		arr[a + 4][b + 2] = '*';
+		arr[a + 3][b + 4] = '*';
+		arr[a + 3][b + 4] = '*';
+		arr[a + 4][b + 4] = '*';
+		arr[a + 5][b + 4] = '*';
+		
+
+	}
+	else { // 2가 아닌 경우 재귀함수 사용
+		
+		for (int i = 0; i < y; i++) {
+			arr[a][b + i] = '*';
+			arr[a + (x - 1)][b + i] = '*';
+
+		}
+		for (int j = 1; j < x - 1; j++) {
+			arr[a + j][b] = '*';
+		}
+		for (int k = 2; k < x - 1; k++) {
+			arr[a + k][b + (y - 1)] = '*';
+		}
+		arr[a + 2][b + (y - 2)] = '*';
+
+		star(a + 2, b + 2, num - 1);
+
+		
+	}
+	
+	
+	
+}
+
+int main() {
+	int num;
+	cin >> num;
+	int x = 4 * num - 1;
+	int y = 4 * num - 3;
+	
+	if (num == 1) { // num=1일 경우 
+		cout << "*";
+	}
+	else {
+		for (int i = 0; i < x; i++) { // 공백 초기화
+			for (int j = 0; j < y; j++) {
+				arr[i][j]=' ';
+			}
+
+		}
+
+		star(0, 0, num); 
+
+		for (int i = 0; i < x; i++) {
+			if (i == 1) { // 두번째 행에서 공백없애는 예외처리
+				cout << "*\n"; // 무조건 *찍고 뉴라인
+				continue;
+			}
+			for (int j = 0; j < y; j++) {
+
+				cout << arr[i][j];
+			}
+			cout << "\n";
+		}
+
+	}
+	
+
+	return 0; 
+}
