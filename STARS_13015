@@ -1,0 +1,80 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+
+int main() {
+	int num;
+	cin >> num;
+
+
+	for (int i = 0; i < 2 * num - 1; i++) {
+		
+		if (i == 0 || i == 2 * num - 2) { //첫번째, 마지막 라인 별찍기 
+			for (int j = 0; j < num; j++) {
+				cout << "*";
+			}
+
+			for (int j = 0; j < 2*num-3; j++) {
+				cout << " ";
+			}
+
+			for (int j = 0; j < num; j++) {
+				cout << "*";
+			}
+			cout << "\n";
+
+			
+		}
+
+		else if(i==num-1){ //가운데 줄 
+			for (int j = 0; j < num - 1; j++) {
+				cout << " ";
+			}
+			cout << "*";
+
+			for (int j = 0; j < num - 2; j++) {
+				cout << " ";
+			}
+			cout << "*";
+
+			for (int j = 0; j < num - 2; j++) {
+				cout << " ";
+			}
+			cout << "*\n";
+
+			
+		}
+
+		else {  // 그 외 줄 출력
+			for (int j = 0; j < num - 1 - abs(num - 1 - i); j++) {
+				cout << " ";
+			}
+			cout << "*";
+
+			for (int j = 0; j < num - 2; j++) {
+				cout << " ";
+			}
+			cout << "*";
+
+			for (int j = 0; j < 2 * abs(num - 1 - i) - 1; j++) {
+				cout << " ";
+			}
+			cout << "*";
+			for (int j = 0; j < num - 2; j++) {
+				cout << " ";
+			}
+
+			cout << "*\n";
+		}
+		
+
+		}
+
+		
+	return 0;
+	}
+
+
+	
+
