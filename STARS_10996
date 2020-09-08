@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	int num;
+	cin >> num;
+
+	for (int i = 0; i < 2 * num; i++) {
+		for (int j = 0; j < num; j++) {
+			// 행과열이 같은 짝수이거나 홀수일때만 별 출력
+				if (i % 2 == 0 && j % 2 == 0 || i % 2 == 1 && j % 2 == 1) { 
+					cout << "*";
+					
+				}
+				else //아닌 위치에는 공백 출력 
+					cout << " ";
+				
+
+		
+		}
+		cout << "\n";
+	}
+
+	return 0; 
+}
